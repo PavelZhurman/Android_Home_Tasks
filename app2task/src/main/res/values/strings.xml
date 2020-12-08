@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">App2task</string>
+    <string name="first_activity_label">First activity</string>
+    <string name="second_activity_label">Second activity</string>
+
+    <string name="start_activity">Посчитать данные</string>
+    <string name="init_data">Инициализировать данные</string>
+    <string name="close_activity">Закрыть активность</string>
+
+    <string name="sum_of_all_numbers">Сумма всех чисел </string>
+    <string name="numbers_average">Среднее арифметическое </string>
+    <string name="magic_number">Число полученное после ряда операций </string>
+    <string name="amount_of_numbers">Количество номеров %1$d</string>
+
 </resources>
