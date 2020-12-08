@@ -1,3 +1,4 @@
+include ':app3task'
 include ':app2task'
 include ':app'
 rootProject.name = "App1"
