@@ -4,15 +4,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="16dp"
+    tools:context=".MainActivity"
+    >
 
-    <TextView
+    <Button
+        android:id="@+id/first_button_table_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="First table layout"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/first_button_linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First linear layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_button_table_layout" />
+
+    <Button
+        android:id="@+id/second_button_linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="second linear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_button_linear_layout" />
+
+    <Button
+        android:id="@+id/second_button_constraint_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="second constraint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_button_linear_layout" />
+
+    <Button
+        android:id="@+id/second_button_relative_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="second relative"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_button_constraint_layout" />
+
+    <Button
+        android:id="@+id/third_button_linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="third linear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_button_relative_layout" />
+
+    <Button
+        android:id="@+id/third_button_constraint_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="third constraint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/third_button_linear_layout" />
+
+    <Button
+        android:id="@+id/third_button_relative_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="third relative"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/third_button_constraint_layout" />
+
+    <Button
+        android:id="@+id/fourth_button_linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="fourth linear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/third_button_relative_layout"/>
+
+    <Button
+        android:id="@+id/fourth_button_constraint_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="fourth constraint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fourth_button_linear_layout" />
+
+    <Button
+        android:id="@+id/fourth_button_relative_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="fourth constraint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fourth_button_constraint_layout" />
+
+<Button
+    android:id="@+id/fifth_button_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:text="Fifth"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/fourth_button_relative_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
