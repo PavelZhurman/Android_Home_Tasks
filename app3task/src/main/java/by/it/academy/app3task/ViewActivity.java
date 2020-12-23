@@ -5,10 +5,12 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class FourthActivityRelativeLayout extends AppCompatActivity {
+public class ViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fourth_relative_layout);
+
+        setTheme(getIntent().getIntExtra("theme", 0));
+        setContentView(getIntent().getIntExtra("id", 0));
     }
 }

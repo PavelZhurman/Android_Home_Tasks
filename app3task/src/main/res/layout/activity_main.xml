@@ -12,7 +12,7 @@
         android:id="@+id/first_button_table_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="First table layout"
+        android:text="@string/first_table_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,7 +20,7 @@
         android:id="@+id/first_button_linear_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="First linear layout"
+        android:text="@string/first_linear_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/first_button_table_layout" />
 
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="second linear"
+        android:text="@string/second_linear"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/first_button_linear_layout" />
 
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="second constraint"
+        android:text="@string/second_constraint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/second_button_linear_layout" />
 
@@ -46,7 +46,7 @@
         android:id="@+id/second_button_relative_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="second relative"
+        android:text="@string/second_relative"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/second_button_constraint_layout" />
 
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="third linear"
+        android:text="@string/third_linear"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/second_button_relative_layout" />
 
@@ -63,7 +63,7 @@
         android:id="@+id/third_button_constraint_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="third constraint"
+        android:text="@string/third_constraint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/third_button_linear_layout" />
 
@@ -71,7 +71,7 @@
         android:id="@+id/third_button_relative_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="third relative"
+        android:text="@string/third_relative"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/third_button_constraint_layout" />
 
@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="fourth linear"
+        android:text="@string/fourth_linear"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/third_button_relative_layout"/>
 
@@ -88,7 +88,7 @@
         android:id="@+id/fourth_button_constraint_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="fourth constraint"
+        android:text="@string/fourth_constraint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fourth_button_linear_layout" />
 
@@ -96,7 +96,7 @@
         android:id="@+id/fourth_button_relative_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="fourth constraint"
+        android:text="@string/fourth_relative"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fourth_button_constraint_layout" />
 
@@ -105,7 +105,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
-    android:text="Fifth"
+    android:text="@string/fifth"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/fourth_button_relative_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

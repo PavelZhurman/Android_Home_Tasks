@@ -30,24 +30,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageButton"
         app:layout_constraintStart_toStartOf="@+id/imageButton" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:background="@color/white"
         android:contentDescription="@string/share"
         android:src="@drawable/ic_baseline_share_24"
         android:tint="@color/grey2"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
@@ -56,11 +49,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:background="@color/white"
         android:contentDescription="@string/bookmark"
         android:src="@drawable/ic_baseline_bookmark_24"
         android:tint="@color/grey2"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toStartOf="@+id/imageButton2"
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
@@ -69,11 +62,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:background="@color/white"
         android:contentDescription="@string/favourite"
         android:src="@drawable/ic_baseline_heart_24"
         android:tint="@color/grey2"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toStartOf="@+id/imageButton3"
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
@@ -81,11 +74,11 @@
         android:id="@+id/imageButton5"
         android:layout_width="175dp"
         android:layout_height="175dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/grey"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton4"
         android:contentDescription="@string/layouts" />
 
     <TextView
@@ -99,25 +92,18 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageButton5"
         app:layout_constraintStart_toStartOf="@+id/imageButton5" />
 
-    <View
-        android:id="@+id/view2"
-        android:layout_width="175dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton5"
-        app:layout_constraintStart_toStartOf="@+id/imageButton5"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
 
     <ImageButton
         android:id="@+id/imageButton7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:background="@color/white"
         android:contentDescription="@string/share"
         android:src="@drawable/ic_baseline_share_24"
         android:tint="@color/grey2"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton5"
         app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
 
     <ImageButton
@@ -125,11 +111,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:background="@color/white"
         android:contentDescription="@string/bookmark"
         android:src="@drawable/ic_baseline_bookmark_24"
         android:tint="@color/grey2"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toStartOf="@+id/imageButton7"
         app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
 
@@ -138,11 +124,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:background="@color/white"
         android:contentDescription="@string/favourite"
         android:src="@drawable/ic_baseline_heart_24"
         android:tint="@color/grey2"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toStartOf="@+id/imageButton8"
         app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
 
@@ -151,10 +137,10 @@
         android:id="@+id/imageButton6"
         android:layout_width="175dp"
         android:layout_height="175dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton4"
         android:contentDescription="@string/views" />
 
     <TextView
@@ -168,25 +154,18 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
         app:layout_constraintStart_toStartOf="@+id/imageButton6" />
 
-    <View
-        android:id="@+id/view3"
-        android:layout_width="175dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton6"
-        app:layout_constraintStart_toStartOf="@+id/imageButton6"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton6" />
 
     <ImageButton
         android:id="@+id/imageButton10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:background="@color/white"
         android:contentDescription="@string/share"
         android:src="@drawable/ic_baseline_share_24"
         android:tint="@color/grey2"
-        app:layout_constraintBottom_toBottomOf="@+id/view3"
-        app:layout_constraintEnd_toEndOf="@+id/view3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton6" />
 
     <ImageButton
@@ -194,11 +173,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:background="@color/white"
         android:contentDescription="@string/bookmark"
         android:src="@drawable/ic_baseline_bookmark_24"
         android:tint="@color/grey2"
-        app:layout_constraintBottom_toBottomOf="@+id/view3"
         app:layout_constraintEnd_toStartOf="@+id/imageButton10"
         app:layout_constraintTop_toBottomOf="@+id/imageButton6" />
 
@@ -207,11 +186,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:background="@color/white"
         android:contentDescription="@string/favourite"
         android:src="@drawable/ic_baseline_heart_24"
         android:tint="@color/grey2"
-        app:layout_constraintBottom_toBottomOf="@+id/view3"
         app:layout_constraintEnd_toStartOf="@+id/imageButton11"
         app:layout_constraintTop_toBottomOf="@+id/imageButton6" />
 
