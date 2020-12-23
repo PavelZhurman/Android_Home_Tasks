@@ -16,7 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name=".activity.FirstActivity"
             android:label="@string/first_activity_label" />
@@ -24,8 +23,13 @@
         <activity
             android:name=".activity.SecondActivity"
             android:label="@string/second_activity_label" />
-        
-        
+
+        <activity android:name=".activity.FirstActivityObserverPattern"
+            android:label="@string/first_activity_label"/>
+
+        <activity android:name=".activity.SecondActivityObserverPattern"
+            android:label="@string/second_activity_label"/>
+
 
     </application>
 
