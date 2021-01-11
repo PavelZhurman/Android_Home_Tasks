@@ -14,24 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button1 = findViewById(R.id.first_button_linear_layout);
-        Button button2 = findViewById(R.id.first_button_table_layout);
-
-        Button button3 = findViewById(R.id.second_button_linear_layout);
-        Button button4 = findViewById(R.id.second_button_constraint_layout);
-        Button button5 = findViewById(R.id.second_button_relative_layout);
-
-        Button button6 = findViewById(R.id.third_button_linear_layout);
-        Button button7 = findViewById(R.id.third_button_constraint_layout);
-        Button button8 = findViewById(R.id.third_button_relative_layout);
-
-        Button button9 = findViewById(R.id.fourth_button_linear_layout);
-        Button button10 = findViewById(R.id.fourth_button_constraint_layout);
-        Button button11 = findViewById(R.id.fourth_button_relative_layout);
-
-        Button button12 = findViewById(R.id.fifth_button_layout);
-
-
         View.OnClickListener onClickListener = v -> {
             Intent intent = new Intent(MainActivity.this, ViewActivity.class);
             switch (v.getId()) {
@@ -102,18 +84,23 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        button1.setOnClickListener(onClickListener);
-        button2.setOnClickListener(onClickListener);
-        button3.setOnClickListener(onClickListener);
-        button4.setOnClickListener(onClickListener);
-        button5.setOnClickListener(onClickListener);
-        button6.setOnClickListener(onClickListener);
-        button7.setOnClickListener(onClickListener);
-        button8.setOnClickListener(onClickListener);
-        button9.setOnClickListener(onClickListener);
-        button10.setOnClickListener(onClickListener);
-        button11.setOnClickListener(onClickListener);
-        button12.setOnClickListener(onClickListener);
+        findViewById(R.id.first_button_linear_layout).setOnClickListener(onClickListener);
+        findViewById(R.id.first_button_table_layout).setOnClickListener(onClickListener);
+
+        findViewById(R.id.second_button_linear_layout).setOnClickListener(onClickListener);
+        findViewById(R.id.second_button_constraint_layout).setOnClickListener(onClickListener);
+        findViewById(R.id.second_button_relative_layout).setOnClickListener(onClickListener);
+
+        findViewById(R.id.third_button_linear_layout).setOnClickListener(onClickListener);
+        findViewById(R.id.third_button_constraint_layout).setOnClickListener(onClickListener);
+        findViewById(R.id.third_button_relative_layout).setOnClickListener(onClickListener);
+
+        findViewById(R.id.fourth_button_linear_layout).setOnClickListener(onClickListener);
+        findViewById(R.id.fourth_button_constraint_layout).setOnClickListener(onClickListener);
+        findViewById(R.id.fourth_button_relative_layout).setOnClickListener(onClickListener);
+
+        findViewById(R.id.fifth_button_layout).setOnClickListener(onClickListener);
+
 
 
     }
