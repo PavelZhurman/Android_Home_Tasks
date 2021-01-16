@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">app4_2task</string>
+    <string name="use_toast">Использовать Toast</string>
+</resources>
