@@ -11,23 +11,33 @@ import androidx.appcompat.app.AppCompatActivity
 
 class AddContactActivity : AppCompatActivity() {
 
+    private lateinit var radioGroup:RadioGroup
+    private lateinit var radioButtonPhoneNumber:RadioButton
+    private lateinit var editTextName: EditText
+    private lateinit var editTextPhoneNumberOrEmail :EditText
+    private lateinit var buttonApply:ImageButton
+
+    private fun addContactToContactList(image: Int, name1: String, emailOrPhoneNumber1: String) {
+        val contact = Contact(image, name1, emailOrPhoneNumber1)
+        ContactManager.ContactListManager.addContactToList(contact)
+        intent.putExtra("add", 0)
+             setResult(RESULT_OK,intent)
+        finish()
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_contact)
 
-        val radioGroup = findViewById<RadioGroup>(R.id.radioGroupAddContact)
-        val radioButtonPhoneNumber = findViewById<RadioButton>(R.id.radioButtonPhoneNumber)
-        val radioButtonEmail = findViewById<RadioButton>(R.id.radioButtonEmail)
-        val editTextName = findViewById<EditText>(R.id.editTextNameAddContact)
-        val editTextPhoneNumberOrEmail = findViewById<EditText>(R.id.editTextPhoneNumberOrEmailAddContact)
-        val buttonApply = findViewById<ImageButton>(R.id.buttonAddContactApply)
+        radioGroup = findViewById(R.id.radioGroupAddContact)
+        radioButtonPhoneNumber = findViewById(R.id.radioButtonPhoneNumber)
+        editTextName = findViewById(R.id.editTextNameAddContact)
+        editTextPhoneNumberOrEmail = findViewById(R.id.editTextPhoneNumberOrEmailAddContact)
+        buttonApply = findViewById(R.id.buttonAddContactApply)
 
         findViewById<ImageButton>(R.id.buttonBackInToolbarAddContact).setOnClickListener {
             finish()
-        }
-
-        radioButtonPhoneNumber.setOnClickListener {
-            radioGroup!!.checkedRadioButtonId
         }
 
         radioGroup.setOnCheckedChangeListener { _, optionId ->
@@ -52,26 +62,16 @@ class AddContactActivity : AppCompatActivity() {
             val name1: String = name.toString()
             val emailOrPhoneNumber1: String = emailOrPhoneNumber.toString()
 
-            var success = false
-
             if (name1.isNotBlank() && emailOrPhoneNumber1.isNotBlank()) {
 
                 if (radioButtonPhoneNumber.isChecked) {
-                    val contact = Contact(R.drawable.ic_baseline_contact_phone_24, name1, emailOrPhoneNumber1)
-                    Contact.ContactListManager.addContactToList(contact)
-                    success = true
+                    addContactToContactList(R.drawable.ic_baseline_contact_phone_24, name1, emailOrPhoneNumber1)
+                } else {
+                    addContactToContactList(R.drawable.ic_baseline_contact_mail_24, name1, emailOrPhoneNumber1)
                 }
-
-                if (radioButtonEmail.isChecked) {
-                    val contact = Contact(R.drawable.ic_baseline_contact_mail_24, name1, emailOrPhoneNumber1)
-
-                    Contact.ContactListManager.addContactToList(contact)
-                    success = true
-                }
-
-                if (success) finish()
             }
         }
+
 
     }
 

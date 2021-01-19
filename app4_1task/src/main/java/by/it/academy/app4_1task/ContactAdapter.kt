@@ -1,6 +1,6 @@
-        package by.it.academy.app4_1task
+package by.it.academy.app4_1task
 
-import android.content.Intent
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +13,13 @@ import java.util.Locale
 import kotlin.collections.ArrayList
 
 
-class Adapter(private val values: List<Contact>) : RecyclerView.Adapter<Adapter.ViewHolder>(), Filterable {
+class ContactAdapter(private val values: List<Contact>, private val onContactAdapterClick: OnContactAdapterClick) : RecyclerView.Adapter<ContactAdapter.ViewHolder>(), Filterable {
 
     var contactFilterList: List<Contact> = values
+
+    interface OnContactAdapterClick {
+        fun onContactClick(item: Contact, position: Int)
+    }
 
     override fun getItemCount(): Int = contactFilterList.size
 
@@ -29,32 +33,22 @@ class Adapter(private val values: List<Contact>) : RecyclerView.Adapter<Adapter.
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contact: Contact = contactFilterList[position]
+        with(holder) {
+            textViewName.text = contact.name
+            textViewEmailOrPhone.text = contact.emailOrPhoneNumber
+            imageView.setImageResource(contact.image)
 
-        holder.textViewName?.text = contact.getName()
-        holder.textViewEmailOrPhone?.text = contact.getEmailOrPhone()
-        holder.imageView?.setImageResource(contact.getImage())
-
-        holder.itemView.setOnLongClickListener {
-            val intent = Intent(holder.itemView.context, EditContactActivity::class.java)
-            intent.putExtra("position", position)
-            intent.putExtra("name", contact.getName())
-            intent.putExtra("emailOrPhoneNumber", contact.getEmailOrPhone())
-            intent.putExtra("image", contact.getImage())
-            holder.itemView.context.startActivity(intent)
-            true
+            itemView.setOnLongClickListener {
+                onContactAdapterClick.onContactClick(contact, position)
+                true
+            }
         }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var textViewName: TextView? = null
-        var textViewEmailOrPhone: TextView? = null
-        var imageView: ImageView? = null
-
-        init {
-            textViewName = itemView.findViewById(R.id.textViewName)
-            textViewEmailOrPhone = itemView.findViewById(R.id.textViewPhoneNumberOrEmail)
-            imageView = itemView.findViewById(R.id.imageButtonContact)
-        }
+        var textViewName: TextView = itemView.findViewById(R.id.textViewName)
+        var textViewEmailOrPhone: TextView = itemView.findViewById(R.id.textViewPhoneNumberOrEmail)
+        var imageView: ImageView = itemView.findViewById(R.id.imageButtonContact)
     }
 
 
@@ -67,7 +61,7 @@ class Adapter(private val values: List<Contact>) : RecyclerView.Adapter<Adapter.
                 } else {
                     val resultList = mutableListOf<Contact>()
                     for (row in values) {
-                        if (row.getName().toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                        if (row.name.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
                             resultList.add(row)
                         }
                     }

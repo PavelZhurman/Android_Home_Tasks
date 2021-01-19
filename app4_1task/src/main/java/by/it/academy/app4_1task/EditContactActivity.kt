@@ -1,6 +1,6 @@
 package by.it.academy.app4_1task
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -9,17 +9,24 @@ import androidx.appcompat.app.AppCompatActivity
 
 class EditContactActivity : AppCompatActivity() {
 
+    private lateinit var editTextName: EditText
+    private lateinit var editTextEmailOrPhoneNumber: EditText
+    private lateinit var buttonApply: ImageButton
+    private lateinit var buttonDeletedContact: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_contact)
 
-        val editTextName = findViewById<EditText>(R.id.editTextNameEditContact)
-        val editTextEmailOrPhoneNumber = findViewById<EditText>(R.id.editTextEmailOrPhoneEditContact)
-        val buttonApply = findViewById<ImageButton>(R.id.buttonEditContactApply)
+        editTextName = findViewById(R.id.editTextNameEditContact)
+        editTextEmailOrPhoneNumber = findViewById(R.id.editTextEmailOrPhoneEditContact)
+        buttonApply = findViewById(R.id.buttonEditContactApply)
+        buttonDeletedContact = findViewById(R.id.buttonRemoveEditContact)
 
-        val buttonDeletedContact = findViewById<Button>(R.id.buttonRemoveEditContact)
-
-        findViewById<ImageButton>(R.id.buttonBackInToolbarEditContact).setOnClickListener { finish() }
+        findViewById<ImageButton>(R.id.buttonBackInToolbarEditContact).setOnClickListener {
+            setResult(RESULT_CANCELED, intent)
+            finish()
+        }
 
         val position = intent.getIntExtra("position", 0)
         var name = intent.getStringExtra("name")
@@ -30,22 +37,26 @@ class EditContactActivity : AppCompatActivity() {
         editTextEmailOrPhoneNumber.setText(emailOrPhoneNumber)
 
         buttonDeletedContact.setOnClickListener {
-            Contact.ContactListManager.deleteContactFromList(position)
-            intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            ContactManager.ContactListManager.deleteContactFromList(position)
+            intent.putExtra("delete", position)
+            setResult(RESULT_OK, intent)
+            finish()
         }
 
         buttonApply.setOnClickListener {
             name = editTextName.text.toString()
             emailOrPhoneNumber = editTextEmailOrPhoneNumber.text.toString()
 
-            if (name!!.isNotBlank()) {
+            if (name != null && emailOrPhoneNumber != null) {
+
                 if (name!!.isNotBlank()) {
                     val contact = Contact(image, name!!, emailOrPhoneNumber!!)
-                    Contact.ContactListManager.editContactInList(position, contact)
-                    intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    ContactManager.ContactListManager.editContactInList(position, contact)
+                    intent.putExtra("edit", position)
+                    setResult(RESULT_OK, intent)
+                    finish()
                 }
+
             }
         }
 
