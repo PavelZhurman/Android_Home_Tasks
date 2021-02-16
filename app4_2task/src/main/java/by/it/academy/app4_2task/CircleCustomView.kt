@@ -30,15 +30,8 @@ class CircleCustomView : View {
 
     private lateinit var rect: RectF
 
-    interface OnCustomClickListener {
-        fun onCustomClick(x: Int, y: Int, color: Int)
-    }
+    lateinit var customClickListener: (x: Int, y: Int, color: Int) -> Unit
 
-    lateinit var customClickListener: OnCustomClickListener
-
-    fun onCustomClickListener(customClickListener: OnCustomClickListener) {
-        this.customClickListener = customClickListener
-    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -103,13 +96,13 @@ class CircleCustomView : View {
             if (pressedX != null && pressedY != null) {
                 if (regions[4].contains(pressedX, pressedY)) {
                     initPaints()
-                    customClickListener.onCustomClick(pressedX, pressedY, paints[4].color)
+                    customClickListener(pressedX, pressedY, paints[4].color)
                     invalidate()
                 } else {
                     for (i in regions.indices) {
                         if (regions[i].contains(pressedX, pressedY)) {
                             paints[i].color = colors.random()
-                            customClickListener.onCustomClick(pressedX, pressedY, paints[i].color)
+                            customClickListener(pressedX, pressedY, paints[i].color)
                             invalidate()
                         }
                     }

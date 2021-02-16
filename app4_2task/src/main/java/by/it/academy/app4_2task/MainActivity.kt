@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
 import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity(), CircleCustomView.OnCustomClickListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var switch: SwitchCompat
     private lateinit var customView: CircleCustomView
@@ -18,18 +18,14 @@ class MainActivity : AppCompatActivity(), CircleCustomView.OnCustomClickListener
 
         switch = findViewById(R.id.switchCompat)
 
-        customView.onCustomClickListener(this)
-
-    }
-
-    override fun onCustomClick(x: Int, y: Int, color: Int) {
-        if (!switch.isChecked) {
-            Snackbar.make(customView, "x= $x, y= $y", Snackbar.LENGTH_SHORT).setTextColor(color).show()
-        } else {
-            Toast.makeText(application, "x= $x, y= $y", Toast.LENGTH_SHORT).show()
+        customView.customClickListener = { x: Int, y: Int, color: Int ->
+            if (!switch.isChecked) {
+                Snackbar.make(customView, "x= $x, y= $y", Snackbar.LENGTH_SHORT).setTextColor(color).show()
+            } else {
+                Toast.makeText(application, "x= $x, y= $y", Toast.LENGTH_SHORT).show()
+            }
         }
+
     }
-
-
 }
 
