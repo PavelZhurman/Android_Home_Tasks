@@ -47,16 +47,12 @@ class EditContactActivity : AppCompatActivity() {
             name = editTextName.text.toString()
             emailOrPhoneNumber = editTextEmailOrPhoneNumber.text.toString()
 
-            if (name != null && emailOrPhoneNumber != null) {
-
-                if (name!!.isNotBlank()) {
-                    val contact = Contact(image, name!!, emailOrPhoneNumber!!)
-                    ContactManager.ContactListManager.editContactInList(position, contact)
-                    intent.putExtra("edit", position)
-                    setResult(RESULT_OK, intent)
-                    finish()
-                }
-
+            if (!name.isNullOrEmpty() && !emailOrPhoneNumber.isNullOrEmpty()) {
+                val contact = Contact(image, name!!, emailOrPhoneNumber!!)
+                ContactManager.ContactListManager.editContactInList(position, contact)
+                intent.putExtra("edit", position)
+                setResult(RESULT_OK, intent)
+                finish()
             }
         }
 

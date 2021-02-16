@@ -11,17 +11,17 @@ import androidx.appcompat.app.AppCompatActivity
 
 class AddContactActivity : AppCompatActivity() {
 
-    private lateinit var radioGroup:RadioGroup
-    private lateinit var radioButtonPhoneNumber:RadioButton
+    private lateinit var radioGroup: RadioGroup
+    private lateinit var radioButtonPhoneNumber: RadioButton
     private lateinit var editTextName: EditText
-    private lateinit var editTextPhoneNumberOrEmail :EditText
-    private lateinit var buttonApply:ImageButton
+    private lateinit var editTextPhoneNumberOrEmail: EditText
+    private lateinit var buttonApply: ImageButton
 
     private fun addContactToContactList(image: Int, name1: String, emailOrPhoneNumber1: String) {
         val contact = Contact(image, name1, emailOrPhoneNumber1)
         ContactManager.ContactListManager.addContactToList(contact)
         intent.putExtra("add", 0)
-             setResult(RESULT_OK,intent)
+        setResult(RESULT_OK, intent)
         finish()
     }
 
@@ -62,16 +62,14 @@ class AddContactActivity : AppCompatActivity() {
             val name1: String = name.toString()
             val emailOrPhoneNumber1: String = emailOrPhoneNumber.toString()
 
-            if (name1.isNotBlank() && emailOrPhoneNumber1.isNotBlank()) {
-
-                if (radioButtonPhoneNumber.isChecked) {
-                    addContactToContactList(R.drawable.ic_baseline_contact_phone_24, name1, emailOrPhoneNumber1)
-                } else {
-                    addContactToContactList(R.drawable.ic_baseline_contact_mail_24, name1, emailOrPhoneNumber1)
-                }
+            val imageId = if (radioButtonPhoneNumber.isChecked) {
+                R.drawable.ic_baseline_contact_phone_24
+            } else {
+                R.drawable.ic_baseline_contact_mail_24
             }
-        }
+            addContactToContactList(imageId, name1, emailOrPhoneNumber1)
 
+        }
 
     }
 
