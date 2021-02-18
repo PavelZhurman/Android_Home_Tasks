@@ -1,5 +1,6 @@
 package by.it.academy.app5task.database
 
+import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -10,6 +11,9 @@ import by.it.academy.app5task.entity.WorkItem
 
 @Dao
 interface WorkItemDAO {
+
+    @Query("SELECT * FROM WorksDataBase")
+    fun getAllWorks() :Cursor
 
     @Query("SELECT * FROM WorksDataBase WHERE carPlate = :carPlate")
     fun getCarWorkList(carPlate:String): MutableList<WorkItem>
