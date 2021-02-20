@@ -1,3 +1,4 @@
+include ':app6_2task'
 include ':app6_1task'
 include ':app5task'
 include ':app3task'
