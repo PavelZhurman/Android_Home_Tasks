@@ -1,6 +1,5 @@
 package by.it.academy.app4_1task
 
-class ContactManager {
     object ContactListManager {
         private val listOfContacts = mutableListOf<Contact>()
 
@@ -21,4 +20,3 @@ class ContactManager {
         }
 
     }
-}

@@ -19,7 +19,7 @@ class AddContactActivity : AppCompatActivity() {
 
     private fun addContactToContactList(image: Int, name1: String, emailOrPhoneNumber1: String) {
         val contact = Contact(image, name1, emailOrPhoneNumber1)
-        ContactManager.ContactListManager.addContactToList(contact)
+        ContactListManager.addContactToList(contact)
         intent.putExtra("add", 0)
         setResult(RESULT_OK, intent)
         finish()
@@ -41,16 +41,14 @@ class AddContactActivity : AppCompatActivity() {
         }
 
         radioGroup.setOnCheckedChangeListener { _, optionId ->
-            run {
-                when (optionId) {
-                    R.id.radioButtonPhoneNumber -> {
-                        editTextPhoneNumberOrEmail.setHint(R.string.phone_number)
-                        editTextPhoneNumberOrEmail.inputType = InputType.TYPE_CLASS_PHONE
-                    }
-                    R.id.radioButtonEmail -> {
-                        editTextPhoneNumberOrEmail.setHint(R.string.email)
-                        editTextPhoneNumberOrEmail.inputType = InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
-                    }
+            when (optionId) {
+                R.id.radioButtonPhoneNumber -> {
+                    editTextPhoneNumberOrEmail.setHint(R.string.phone_number)
+                    editTextPhoneNumberOrEmail.inputType = InputType.TYPE_CLASS_PHONE
+                }
+                R.id.radioButtonEmail -> {
+                    editTextPhoneNumberOrEmail.setHint(R.string.email)
+                    editTextPhoneNumberOrEmail.inputType = InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
                 }
             }
         }

@@ -10,16 +10,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+private const val ACTIVITY_ADD_CONTACT = 1
+private const val ACTIVITY_EDIT_CONTACT = 2
+
 class MainActivity : AppCompatActivity(), ContactAdapter.OnContactAdapterClick {
 
     private lateinit var textViewNoContacts: TextView
     private lateinit var contactAdapter: ContactAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
-
-    private val ACTIVITY_ADD_CONTACT = 1
-    private val ACTIVITY_EDIT_CONTACT = 2
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +28,7 @@ class MainActivity : AppCompatActivity(), ContactAdapter.OnContactAdapterClick {
 
         searchView = findViewById(R.id.searchView)
         recyclerView = findViewById(R.id.recyclerView)
-        contactAdapter = ContactAdapter(ContactManager.ContactListManager.getListOfContacts(), this)
+        contactAdapter = ContactAdapter(ContactListManager.getListOfContacts(), this)
 
 
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -75,7 +74,7 @@ class MainActivity : AppCompatActivity(), ContactAdapter.OnContactAdapterClick {
 
     override fun onResume() {
         super.onResume()
-        textViewNoContacts.isVisible = ContactManager.ContactListManager.getListOfContacts().isEmpty()
+        textViewNoContacts.isVisible = ContactListManager.getListOfContacts().isEmpty()
     }
 
     override fun onContactClick(item: Contact, position: Int) {
