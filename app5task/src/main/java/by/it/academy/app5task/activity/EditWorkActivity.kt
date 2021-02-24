@@ -137,7 +137,7 @@ class EditWorkActivity : AppCompatActivity() {
         workItem = intent.getParcelableExtra("workItem")
                 ?: WorkItem("", "", "", 0F, 0, "")
         date = workItem.applicationDate
-        val dateForTextViewApplicationDate = getString(R.string.application_date) + " " + date
+        val dateForTextViewApplicationDate = getString(R.string.application_date,date)
         textViewApplicationDate.text = dateForTextViewApplicationDate
         editTextWorkName.setText(workItem.workType)
         editTextCost.setText(workItem.cost.toString())

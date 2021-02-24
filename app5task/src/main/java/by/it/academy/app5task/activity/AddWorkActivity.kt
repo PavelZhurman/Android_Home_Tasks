@@ -11,7 +11,7 @@ import by.it.academy.app5task.database.DatabaseCars
 import by.it.academy.app5task.database.WorkItemDAO
 import by.it.academy.app5task.entity.WorkItem
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 
 private const val ImageButtonPendingCode = 1
 private const val ImageButtonInProgressCode = 2
@@ -38,15 +38,23 @@ class AddWorkActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_work)
 
+        buttonBack = findViewById(R.id.buttonBack)
+        buttonApply = findViewById(R.id.buttonApply)
+        textViewApplicationDate = findViewById(R.id.textViewApplicationDate)
+        editTextWorkName = findViewById(R.id.editTextWorkName)
+        editTextCost = findViewById(R.id.editTextCost)
+        editTextDescription = findViewById(R.id.editTextDescription)
+        imageButtonPending = findViewById(R.id.imageButtonPending)
+        imageButtonInProgress = findViewById(R.id.imageButtonInProgress)
+        imageButtonCompleted = findViewById(R.id.imageButtonCompleted)
+
         dao = DatabaseCars.init(this).getWorkListDatabaseDAO()
-        setFindViewByIds()
-        getCurrentDate()
+        carPlate = intent.getStringExtra("carPlate").toString()
+
+        setCurrentDateInTextView()
         setOnClickListenersImageButtons()
 
         buttonBack.setOnClickListener { finish() }
-
-        carPlate = intent.getStringExtra("carPlate").toString()
-
 
         buttonApply.setOnClickListener {
             val workName = editTextWorkName.text.toString()
@@ -65,10 +73,11 @@ class AddWorkActivity : AppCompatActivity() {
 
     }
 
-    private fun getCurrentDate() {
+    private fun setCurrentDateInTextView() {
+
         val simpleDateFormat = SimpleDateFormat.getDateInstance()
-        date = simpleDateFormat.format(Date())
-        val dateForTextView = getString(R.string.application_date) + " " + date
+        date = simpleDateFormat.format(Date()) //Date.parseToString()
+        val dateForTextView = getString(R.string.application_date, date)
         textViewApplicationDate.text = dateForTextView
     }
 
@@ -95,15 +104,4 @@ class AddWorkActivity : AppCompatActivity() {
         }
     }
 
-    private fun setFindViewByIds() {
-        buttonBack = findViewById(R.id.buttonBack)
-        buttonApply = findViewById(R.id.buttonApply)
-        textViewApplicationDate = findViewById(R.id.textViewApplicationDate)
-        editTextWorkName = findViewById(R.id.editTextWorkName)
-        editTextCost = findViewById(R.id.editTextCost)
-        editTextDescription = findViewById(R.id.editTextDescription)
-        imageButtonPending = findViewById(R.id.imageButtonPending)
-        imageButtonInProgress = findViewById(R.id.imageButtonInProgress)
-        imageButtonCompleted = findViewById(R.id.imageButtonCompleted)
-    }
 }

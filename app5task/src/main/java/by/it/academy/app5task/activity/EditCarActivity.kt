@@ -1,10 +1,8 @@
 package by.it.academy.app5task.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.widget.EditText
 import android.widget.ImageButton
@@ -15,9 +13,9 @@ import androidx.core.net.toUri
 import by.it.academy.app5task.R
 import by.it.academy.app5task.database.DatabaseCars
 import by.it.academy.app5task.entity.CarItem
+import by.it.academy.app5task.functions.createDirectory
+import by.it.academy.app5task.functions.saveImage
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.io.File
-import java.io.FileOutputStream
 import java.lang.Exception
 
 private const val PHOTO_CODE_REQUEST = 10
@@ -73,20 +71,13 @@ class EditCarActivity : AppCompatActivity() {
 
                 }
 
-                var success = true
-
                 if (ownerName.isNotEmpty() && producer.isNotEmpty() && model.isNotEmpty() && plateNumber.isNotEmpty()) {
                     val carItem = CarItem(ownerName, producer, model, plateNumber, pathImage)
                     try {
                         dao.updateCar(carItem)
-
+                        finishActivity()
                     } catch (e: Exception) {
                         Toast.makeText(this, getString(R.string.car_with_this_number_already_exists), Toast.LENGTH_SHORT).show()
-                        success = false
-                    }
-                    if (success) {
-                        setResult(Activity.RESULT_OK, intent)
-                        finish()
                     }
                 } else {
                     Toast.makeText(this, getString(R.string.all_fields_must_be_filled), Toast.LENGTH_SHORT).show()
@@ -100,38 +91,20 @@ class EditCarActivity : AppCompatActivity() {
         }
     }
 
+    private fun finishActivity() {
+        setResult(RESULT_OK)
+        finish()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (data != null) {
             data.extras?.get("data").run {
-                currentPhotoPath = createDirectory()?.let { saveImage(this as Bitmap, carPhotoImageView, it) }.toString()
+                currentPhotoPath = createDirectory(applicationContext)?.let { saveImage(this as Bitmap, carPhotoImageView, it) }.toString()
                 newPhotoLoaded = true
             }
         }
     }
 
-    private fun createDirectory(): File? {
-        if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-            val carPictureDirectory = File("${applicationContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES)}/CarPictures")
-            if (!carPictureDirectory.exists()) {
-                carPictureDirectory.mkdir()
-            }
-            return carPictureDirectory
-        }
-        return null
-    }
-
-    private fun saveImage(photo: Bitmap, imageView: ImageView, carPictureDirectory: File): String {
-        val path = "photo_${System.currentTimeMillis()}.jpg"
-        val pathToPicture = "${carPictureDirectory.path}/${path}"
-        val file = File(carPictureDirectory, path)
-        file.createNewFile()
-        val stream = FileOutputStream(file)
-        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-        imageView.setImageBitmap(photo)
-        stream.flush()
-        stream.close()
-        return pathToPicture
-    }
 }

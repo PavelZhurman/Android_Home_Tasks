@@ -69,9 +69,7 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (data != null) {
             if (resultCode == RESULT_OK) {
-
                 checkCarDatabase()
                 visibilityOfTextViewNoCars()
 
@@ -87,10 +85,7 @@ class MainActivity : AppCompatActivity() {
                     intent.putExtra("workList", it)
                     startActivityForResult(intent, openWorkListForTheCar)
                 }
-
-
             }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

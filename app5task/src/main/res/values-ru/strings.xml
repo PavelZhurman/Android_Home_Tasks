@@ -39,7 +39,7 @@
     <string name="work_name">Название работы</string>
     <string name="cost">Цена ($)</string>
     <string name="description">Описание</string>
-    <string name="application_date">Дата установки</string>
+    <string name="application_date">Дата установки %1$s</string>
     <string name="warning">Внимание!</string>
     <string name="are_you_sure_wont_to_delete_work">Вы действительно хотите удалить работу?</string>
     <string name="ok">Ок</string>

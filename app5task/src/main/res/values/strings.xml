@@ -38,7 +38,7 @@
     <string name="work_name">Work name</string>
     <string name="cost">Cost ($)</string>
     <string name="description">Description</string>
-    <string name="application_date">Application date</string>
+    <string name="application_date">Application date %1$s</string>
     <string name="warning">Warning!</string>
     <string name="are_you_sure_wont_to_delete_work">Are you sure you want to delete work?</string>
     <string name="ok">OK</string>
