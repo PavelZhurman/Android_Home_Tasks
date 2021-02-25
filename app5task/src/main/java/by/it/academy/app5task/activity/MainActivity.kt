@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerViewCarsList)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        checkCarDatabase()
+        setValuesInAdapter()
         visibilityOfTextViewNoCars()
         writeDateToLogFile()
 
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
             if (resultCode == RESULT_OK) {
-                checkCarDatabase()
+                setValuesInAdapter()
                 visibilityOfTextViewNoCars()
 
                 /*по какой-то причине необходимо переинеацилизировать иначе при повторном нажатии
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun checkCarDatabase() {
+    private fun setValuesInAdapter() {
         carItemAdapter = CarAdapter(dao.getAllCarsSorted())
         recyclerView.adapter = carItemAdapter
     }

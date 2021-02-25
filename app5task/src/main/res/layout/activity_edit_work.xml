@@ -145,71 +145,13 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <ImageButton
-        android:id="@+id/imageButtonPending"
-        android:layout_width="wrap_content"
+    <by.it.academy.app5task.customview.WorkStatusCustomView
+        android:id="@+id/customViewWorkStatus"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:background="@color/white"
-        android:contentDescription="@string/pending"
-        android:src="@drawable/ic_pending"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewArrowForward1"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDescription" />
-
-    <ImageView
-        android:id="@+id/imageViewArrowForward1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
-        android:background="@color/white"
-        android:contentDescription="@string/arrow_forward"
-        android:src="@drawable/ic_baseline_arrow_forward_24"
-        app:layout_constraintEnd_toStartOf="@+id/imageButtonInProgress"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonPending"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDescription" />
-
-    <ImageButton
-        android:id="@+id/imageButtonInProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@color/white"
-        android:contentDescription="@string/in_progress"
-        android:src="@drawable/ic_in_progress_gray"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewArrowForward2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageViewArrowForward1"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDescription" />
-
-    <ImageView
-        android:id="@+id/imageViewArrowForward2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
-        android:background="@color/white"
-        android:contentDescription="@string/arrow_forward"
-        android:src="@drawable/ic_baseline_arrow_forward_24"
-        app:layout_constraintEnd_toStartOf="@+id/imageButtonCompleted"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonInProgress"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDescription" />
-
-    <ImageButton
-        android:id="@+id/imageButtonCompleted"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@color/white"
-        android:contentDescription="@string/completed"
-        android:src="@drawable/ic_in_progress_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageViewArrowForward2"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDescription" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

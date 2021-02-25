@@ -133,8 +133,13 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-
+    <by.it.academy.app5task.customview.WorkStatusCustomView
+        android:id="@+id/customViewWorkStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

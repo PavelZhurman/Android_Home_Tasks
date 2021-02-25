@@ -7,15 +7,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import by.it.academy.app5task.R
+import by.it.academy.app5task.customview.WorkStatusCustomView
 import by.it.academy.app5task.database.DatabaseCars
 import by.it.academy.app5task.database.WorkItemDAO
 import by.it.academy.app5task.entity.WorkItem
-import java.text.SimpleDateFormat
-import java.util.*
+import by.it.academy.app5task.functions.getCurrentDate
 
-private const val ImageButtonPendingCode = 1
-private const val ImageButtonInProgressCode = 2
-private const val ImageButtonCompletedCode = 3
+const val ImageButtonPendingCode = 1
+const val ImageButtonInProgressCode = 2
+const val ImageButtonCompletedCode = 3
+
 
 class AddWorkActivity : AppCompatActivity() {
 
@@ -31,6 +32,7 @@ class AddWorkActivity : AppCompatActivity() {
     private lateinit var date: String
     private lateinit var carPlate: String
     private lateinit var dao: WorkItemDAO
+    private lateinit var workStatusCustomView: WorkStatusCustomView
     private var workStatus: Int = ImageButtonPendingCode
 
 
@@ -47,12 +49,15 @@ class AddWorkActivity : AppCompatActivity() {
         imageButtonPending = findViewById(R.id.imageButtonPending)
         imageButtonInProgress = findViewById(R.id.imageButtonInProgress)
         imageButtonCompleted = findViewById(R.id.imageButtonCompleted)
+        workStatusCustomView = findViewById(R.id.customViewWorkStatus)
+
 
         dao = DatabaseCars.init(this).getWorkListDatabaseDAO()
         carPlate = intent.getStringExtra("carPlate").toString()
 
         setCurrentDateInTextView()
-        setOnClickListenersImageButtons()
+
+        workStatusCustomView.customClickListenerSetWorkStatus = { status -> workStatus = status }
 
         buttonBack.setOnClickListener { finish() }
 
@@ -70,38 +75,11 @@ class AddWorkActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.all_fields_must_be_filled), Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 
     private fun setCurrentDateInTextView() {
-
-        val simpleDateFormat = SimpleDateFormat.getDateInstance()
-        date = simpleDateFormat.format(Date()) //Date.parseToString()
-        val dateForTextView = getString(R.string.application_date, date)
+        val dateForTextView = getString(R.string.application_date, getCurrentDate())
         textViewApplicationDate.text = dateForTextView
-    }
-
-    private fun setOnClickListenersImageButtons() {
-        imageButtonPending.setOnClickListener {
-            imageButtonPending.setImageResource(R.drawable.ic_pending)
-            imageButtonInProgress.setImageResource(R.drawable.ic_in_progress_gray)
-            imageButtonCompleted.setImageResource(R.drawable.ic_completed_gray)
-            workStatus = ImageButtonPendingCode
-        }
-
-        imageButtonInProgress.setOnClickListener {
-            imageButtonInProgress.setImageResource(R.drawable.ic_in_progress)
-            imageButtonPending.setImageResource(R.drawable.ic_pending_gray)
-            imageButtonCompleted.setImageResource(R.drawable.ic_completed_gray)
-            workStatus = ImageButtonInProgressCode
-        }
-
-        imageButtonCompleted.setOnClickListener {
-            imageButtonPending.setImageResource(R.drawable.ic_pending_gray)
-            imageButtonInProgress.setImageResource(R.drawable.ic_in_progress_gray)
-            imageButtonCompleted.setImageResource(R.drawable.ic_completed)
-            workStatus = ImageButtonCompletedCode
-        }
     }
 
 }

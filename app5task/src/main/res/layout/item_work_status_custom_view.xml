@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/workStatusCustomView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -10,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/white"
+        android:background="@color/grey_background"
         android:contentDescription="@string/pending"
         android:src="@drawable/ic_pending" />
 
@@ -20,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:layout_weight="1"
-        android:background="@color/white"
         android:contentDescription="@string/arrow_forward"
         android:src="@drawable/ic_baseline_arrow_forward_24" />
 
@@ -29,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/white"
+        android:background="@color/grey_background"
         android:contentDescription="@string/in_progress"
         android:src="@drawable/ic_in_progress_gray" />
 
@@ -39,7 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:layout_weight="1"
-        android:background="@color/white"
         android:contentDescription="@string/arrow_forward"
         android:src="@drawable/ic_baseline_arrow_forward_24" />
 
@@ -48,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/white"
+        android:background="@color/grey_background"
         android:contentDescription="@string/completed"
         android:src="@drawable/ic_in_progress_gray" />
 

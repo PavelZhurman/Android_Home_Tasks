@@ -7,7 +7,7 @@ import android.widget.ImageView
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 fun createDirectory(applicationContext: Context): File? {
     if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
@@ -33,4 +33,11 @@ fun saveImage(photo: Bitmap, imageView: ImageView, carPictureDirectory: File): S
     stream.close()
     return pathToPicture
 }
+
+fun Date.parseToString(): String = SimpleDateFormat.getDateInstance().format(this)
+
+fun getCurrentDate(): String {
+    return Date().parseToString()
+}
+
 

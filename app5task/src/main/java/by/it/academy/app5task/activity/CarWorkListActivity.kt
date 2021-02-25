@@ -27,7 +27,7 @@ private const val EditWorkRequestCode = 22
 class CarWorkListActivity : AppCompatActivity() {
 
     private lateinit var workItemAdapter: CarWorkAdapter
-    private lateinit var carItem: CarItem
+    private var carItem: CarItem? = null
     private lateinit var recycleView: RecyclerView
     private lateinit var floatingActionButton: FloatingActionButton
     private lateinit var buttonBack: ImageButton
@@ -43,8 +43,16 @@ class CarWorkListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_car_work_list)
 
-        setFindViewByIds()
-        getIntentExtra()
+        recycleView = findViewById(R.id.recyclerViewWorkList)
+        buttonBack = findViewById(R.id.buttonBack)
+        textViewNoWorksAdded = findViewById(R.id.textViewNoWorksAdded)
+        textViewInToolbarCarProducer = findViewById(R.id.textViewInToolbarCarProducer)
+        textViewInToolbarCarModel = findViewById(R.id.textViewInToolbarCarModel)
+        textViewInToolbarPlate = findViewById(R.id.textViewInToolbarPlate)
+        floatingActionButton = findViewById(R.id.floatingActionButtonAddWork)
+        toolbar = findViewById(R.id.toolbarCarWorkList)
+
+        setCarInfoInToolbarTextViews()
         setSupportActionBar(toolbar)
 
         buttonBack.setOnClickListener {
@@ -54,14 +62,14 @@ class CarWorkListActivity : AppCompatActivity() {
 
         dao = DatabaseCars.init(this).getWorkListDatabaseDAO()
         recycleView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        checkDataBase(dao.getCarWorkList(carItem.carPlate))
+        carItem?.carPlate?.let { dao.getCarWorkList(it) }?.let { setValuesInAdapter(it) }
 
         visibilityOfTextViewNoCars()
 
 
         floatingActionButton.setOnClickListener {
-            intent = Intent(this, AddWorkActivity::class.java)
-            intent.putExtra("carPlate", carItem.carPlate)
+            val intent = Intent(this, AddWorkActivity::class.java)
+            intent.putExtra("carPlate", carItem?.carPlate)
             startActivityForResult(intent, AddWorkRequestCode)
         }
         workItemAdapter.onWorkItemClickListener = {
@@ -76,7 +84,7 @@ class CarWorkListActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == RESULT_OK) {
-            checkDataBase(dao.getCarWorkList(carItem.carPlate))
+            carItem?.carPlate?.let { dao.getCarWorkList(it) }?.let { setValuesInAdapter(it) }
 
             workItemAdapter.onWorkItemClickListener = {
                 val intent = Intent(this, EditWorkActivity::class.java)
@@ -112,53 +120,41 @@ class CarWorkListActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_sort_by_pending -> {
-                checkDataBase(dao.getFilteredCarWorkListByWorkType(carItem.carPlate, 1))
-            }
-            R.id.menu_sort_by_in_progress -> {
-                checkDataBase(dao.getFilteredCarWorkListByWorkType(carItem.carPlate, 2))
-            }
-            R.id.menu_sort_by_completed -> {
-                checkDataBase(dao.getFilteredCarWorkListByWorkType(carItem.carPlate, 3))
-            }
-            R.id.menu_show_all -> {
-                checkDataBase(dao.getCarWorkList(carItem.carPlate))
-            }
+            R.id.menu_sort_by_pending ->
+                carItem?.carPlate?.let { dao.getFilteredCarWorkListByWorkType(it, 1) }?.let { setValuesInAdapter(it) }
+
+            R.id.menu_sort_by_in_progress ->
+                carItem?.carPlate?.let { dao.getFilteredCarWorkListByWorkType(it, 2) }?.let { setValuesInAdapter(it) }
+
+            R.id.menu_sort_by_completed ->
+                carItem?.let { dao.getFilteredCarWorkListByWorkType(it.carPlate, 3) }?.let { setValuesInAdapter(it) }
+
+            R.id.menu_show_all ->
+                carItem?.carPlate?.let { dao.getCarWorkList(it) }?.let { setValuesInAdapter(it) }
+
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun getIntentExtra() {
-        carItem = intent.getParcelableExtra("workList") ?: CarItem("", "", "", "", "")
-        with(carItem) {
-            textViewInToolbarCarProducer.text = producer
-            textViewInToolbarCarModel.text = carModel
-            textViewInToolbarPlate.text = carPlate
-        }
+    private fun setCarInfoInToolbarTextViews() {
+        carItem = intent.getParcelableExtra("workList")
+        textViewInToolbarCarProducer.text = carItem?.producer ?: ""
+        textViewInToolbarCarModel.text = carItem?.carModel ?: ""
+        textViewInToolbarPlate.text = carItem?.carPlate ?: ""
     }
 
-    private fun setFindViewByIds() {
-        recycleView = findViewById(R.id.recyclerViewWorkList)
-        buttonBack = findViewById(R.id.buttonBack)
-        textViewNoWorksAdded = findViewById(R.id.textViewNoWorksAdded)
-        textViewInToolbarCarProducer = findViewById(R.id.textViewInToolbarCarProducer)
-        textViewInToolbarCarModel = findViewById(R.id.textViewInToolbarCarModel)
-        textViewInToolbarPlate = findViewById(R.id.textViewInToolbarPlate)
-        floatingActionButton = findViewById(R.id.floatingActionButtonAddWork)
-        toolbar = findViewById(R.id.toolbarCarWorkList)
-    }
-
-    private fun checkDataBase(list: MutableList<WorkItem>) {
+    private fun setValuesInAdapter(list: MutableList<WorkItem>) {
         workItemAdapter = CarWorkAdapter(list)
         recycleView.adapter = workItemAdapter
 
     }
 
     private fun visibilityOfTextViewNoCars() {
-        if (workItemAdapter.itemCount == 0) {
-            textViewNoWorksAdded.visibility = View.VISIBLE
+
+        textViewNoWorksAdded.visibility = if (workItemAdapter.itemCount == 0) {
+            View.VISIBLE
         } else {
-            textViewNoWorksAdded.visibility = View.INVISIBLE
+            View.INVISIBLE
         }
     }
 }

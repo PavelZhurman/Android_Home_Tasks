@@ -12,7 +12,7 @@ import by.it.academy.app5task.entity.WorkItem
 interface WorkItemDAO {
 
     @Query("SELECT * FROM WorksDataBase WHERE carPlate = :carPlate")
-    fun getCarWorkList(carPlate:String): MutableList<WorkItem>
+    fun getCarWorkList(carPlate: String): MutableList<WorkItem>
 
     @Insert
     fun addWork(entity: WorkItem)

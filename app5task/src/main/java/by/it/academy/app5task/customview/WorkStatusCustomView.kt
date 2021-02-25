@@ -1,32 +1,49 @@
 package by.it.academy.app5task.customview
 
 import android.content.Context
-import android.graphics.Canvas
 import android.util.AttributeSet
-import android.view.View
+import android.widget.ImageButton
+import android.widget.LinearLayout
 import by.it.academy.app5task.R
+import by.it.academy.app5task.activity.ImageButtonCompletedCode
+import by.it.academy.app5task.activity.ImageButtonInProgressCode
+import by.it.academy.app5task.activity.ImageButtonPendingCode
 
-class WorkStatusCustomView : View {
 
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
+class WorkStatusCustomView(context: Context?, attrs: AttributeSet) : LinearLayout(context, attrs) {
+    lateinit var customClickListenerSetWorkStatus: (workStatus: Int) -> Unit
 
-    private val imagePendingGray = R.drawable.ic_pending_gray
-    private val imageInProgressGray = R.drawable.ic_in_progress_gray
-    private val imageCompletedGray = R.drawable.ic_completed_gray
-    private val imagePending = R.drawable.ic_pending
-    private val imageInProgress = R.drawable.ic_in_progress
-    private val imageCompleted = R.drawable.ic_completed
-    private val imageArrowForward = R.drawable.ic_baseline_arrow_forward_24
+    init {
+        inflate(context, R.layout.item_work_status_custom_view, this)
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    }
+        val imageButtonPending: ImageButton = findViewById(R.id.imageButtonPending)
+        val imageButtonInProgress: ImageButton = findViewById(R.id.imageButtonInProgress)
+        val imageButtonCompleted: ImageButton = findViewById(R.id.imageButtonCompleted)
 
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
+        imageButtonPending.setImageResource(R.drawable.ic_pending)
+        imageButtonInProgress.setImageResource(R.drawable.ic_in_progress_gray)
+        imageButtonCompleted.setImageResource(R.drawable.ic_completed_gray)
+
+        imageButtonPending.setOnClickListener {
+            imageButtonPending.setImageResource(R.drawable.ic_pending)
+            imageButtonInProgress.setImageResource(R.drawable.ic_in_progress_gray)
+            imageButtonCompleted.setImageResource(R.drawable.ic_completed_gray)
+            customClickListenerSetWorkStatus(ImageButtonPendingCode)
+        }
+
+        imageButtonInProgress.setOnClickListener {
+            imageButtonInProgress.setImageResource(R.drawable.ic_in_progress)
+            imageButtonPending.setImageResource(R.drawable.ic_pending_gray)
+            imageButtonCompleted.setImageResource(R.drawable.ic_completed_gray)
+            customClickListenerSetWorkStatus(ImageButtonInProgressCode)
+        }
+
+        imageButtonCompleted.setOnClickListener {
+            imageButtonPending.setImageResource(R.drawable.ic_pending_gray)
+            imageButtonInProgress.setImageResource(R.drawable.ic_in_progress_gray)
+            imageButtonCompleted.setImageResource(R.drawable.ic_completed)
+            customClickListenerSetWorkStatus(ImageButtonCompletedCode)
+        }
     }
 
 }
