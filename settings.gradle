@@ -1,3 +1,4 @@
+include ':app7_completablefuture'
 include ':app5task'
 include ':app3task'
 include ':app2task'
