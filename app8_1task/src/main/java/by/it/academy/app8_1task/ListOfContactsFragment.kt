@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -54,6 +55,7 @@ class ListOfContactsFragment : Fragment(R.layout.fragment_list_of_contacts), Con
     private fun showAddContactFragment() {
 
         parentFragmentManager.beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .setReorderingAllowed(true)
                 .replace(R.id.mainContainerFragment, AddContactFragment())
@@ -74,6 +76,7 @@ class ListOfContactsFragment : Fragment(R.layout.fragment_list_of_contacts), Con
         }
 
         parentFragmentManager.beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .setReorderingAllowed(true)
                 .replace(R.id.mainContainerFragment, EditContactFragment::class.java, bundle)

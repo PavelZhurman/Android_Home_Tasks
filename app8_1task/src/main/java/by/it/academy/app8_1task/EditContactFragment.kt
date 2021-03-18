@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 
 class EditContactFragment : Fragment(R.layout.fragment_edit_contact) {
@@ -63,6 +64,7 @@ class EditContactFragment : Fragment(R.layout.fragment_edit_contact) {
 
     private fun showListOfContactsFragment() {
         parentFragmentManager.beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .replace(R.id.mainContainerFragment, ListOfContactsFragment())

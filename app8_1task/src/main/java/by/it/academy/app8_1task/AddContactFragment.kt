@@ -11,6 +11,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 
 class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
@@ -46,11 +47,13 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
             }
 
             buttonBack.setOnClickListener {
-                parentFragmentManager.beginTransaction().replace(R.id.mainContainerFragment, ListOfContactsFragment()).commit()
+                parentFragmentManager.beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                        .replace(R.id.mainContainerFragment, ListOfContactsFragment())
+                        .commit()
             }
 
         }
-
 
     }
 
@@ -59,6 +62,7 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
         ContactListManager.addContactToList(contact)
         parentFragmentManager
                 .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .replace(R.id.mainContainerFragment, ListOfContactsFragment()).commit()
     }
 }
