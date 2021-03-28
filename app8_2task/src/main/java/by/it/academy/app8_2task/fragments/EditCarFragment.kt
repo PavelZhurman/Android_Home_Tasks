@@ -10,10 +10,13 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import by.it.academy.app8_2task.R
+import by.it.academy.app8_2task.activity.CAR_LIST_FRAGMENT
+import by.it.academy.app8_2task.activity.EDIT_CAR_FRAGMENT
 import by.it.academy.app8_2task.entity.CarItem
 import by.it.academy.app8_2task.functions.createDirectory
 import by.it.academy.app8_2task.functions.saveImage
@@ -27,7 +30,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-private const val PHOTO_CODE_REQUEST = 10
+private const val PHOTO_CODE_REQUEST = 100
 
 class EditCarFragment:Fragment(R.layout.fragment_edit_car) {
 
@@ -116,12 +119,7 @@ class EditCarFragment:Fragment(R.layout.fragment_edit_car) {
     }
     private fun finishActivity() {
                 ioScope.cancel()
-        parentFragmentManager.commit {
-            addToBackStack(null)
-            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-            setReorderingAllowed(true)
-            replace(R.id.mainContainer, CarListFragment())
-        }
+        (activity as OnChangeFragmentListener).onFragmentChange(CAR_LIST_FRAGMENT, null)
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

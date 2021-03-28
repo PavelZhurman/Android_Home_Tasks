@@ -9,11 +9,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.it.academy.app8_2task.R
+import by.it.academy.app8_2task.activity.ADD_CAR_FRAGMENT
+import by.it.academy.app8_2task.activity.CAR_WORK_LIST_FRAGMENT
+import by.it.academy.app8_2task.activity.EDIT_CAR_FRAGMENT
 import by.it.academy.app8_2task.adapter.CarAdapter
 import by.it.academy.app8_2task.repositories.DatabaseCarsRepository
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -51,11 +52,7 @@ class CarListFragment : Fragment(R.layout.fragment_car_list) {
             setValuesInAdapter()
 
             fAButtonAddCar.setOnClickListener {
-                parentFragmentManager.commit {
-                    addToBackStack(null)
-                    setReorderingAllowed(true)
-                    replace(R.id.mainContainer, AddCarFragment())
-                }
+                (activity as OnChangeFragmentListener).onFragmentChange(ADD_CAR_FRAGMENT, null)
             }
 
         }
@@ -69,20 +66,10 @@ class CarListFragment : Fragment(R.layout.fragment_car_list) {
             recyclerView.adapter = carItemAdapter
 
             carItemAdapter.onEditClickListener = {
-                parentFragmentManager.commit {
-                    addToBackStack(null)
-                    setReorderingAllowed(true)
-                    setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    replace(R.id.mainContainer, EditCarFragment::class.java, bundleOf("carItem" to it))
-                }
+                (activity as OnChangeFragmentListener).onFragmentChange(EDIT_CAR_FRAGMENT, bundleOf("carItem" to it))
             }
             carItemAdapter.onCarItemClickListener = {
-                parentFragmentManager.commit {
-                    addToBackStack(null)
-                    setReorderingAllowed(true)
-                    setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    replace(R.id.mainContainer, CarWorkListFragment::class.java, bundleOf("workList" to it))
-                }
+                (activity as OnChangeFragmentListener).onFragmentChange(CAR_WORK_LIST_FRAGMENT, bundleOf("workList" to it))
             }
             visibilityOfTextViewNoCars()
         }

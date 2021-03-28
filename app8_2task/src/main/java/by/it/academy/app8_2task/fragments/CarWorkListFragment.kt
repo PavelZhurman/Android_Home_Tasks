@@ -18,6 +18,8 @@ import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.it.academy.app8_2task.R
+import by.it.academy.app8_2task.activity.ADD_WORK_FRAGMENT
+import by.it.academy.app8_2task.activity.EDIT_WORK_FRAGMENT
 import by.it.academy.app8_2task.adapter.CarWorkAdapter
 import by.it.academy.app8_2task.entity.CarItem
 import by.it.academy.app8_2task.entity.WorkItem
@@ -79,35 +81,23 @@ class CarWorkListFragment : Fragment(R.layout.fragment_car_works_list) {
             setValuesInAdapter()
 
             floatingActionButton.setOnClickListener {
-                parentFragmentManager.commit {
-                    setReorderingAllowed(true)
-                    setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    addToBackStack(null)
-                    replace(R.id.mainContainer, AddWorkFragment::class.java, bundleOf("carPlate" to carItem?.carPlate, "carItem" to carItem))
-                }
-
+                (activity as OnChangeFragmentListener).onFragmentChange(ADD_WORK_FRAGMENT, bundleOf("carPlate" to carItem?.carPlate, "carItem" to carItem))
             }
+
             workItemAdapter.onWorkItemClickListener = {
-
-                parentFragmentManager.commit {
-                    addToBackStack(null)
-                    setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    setReorderingAllowed(true)
-                    replace(R.id.mainContainer, EditWorkFragment::class.java, bundleOf("workItem" to it, "carItem" to carItem))
-                }
-
+                (activity as OnChangeFragmentListener).onFragmentChange(EDIT_WORK_FRAGMENT, bundleOf("workItem" to it, "carItem" to carItem))
             }
         }
     }
 
 
-    /*
-    *
-    *
-    * Так тут и не смог нормально настроить тулбар... Есть идеи?
-    *
-    *
-    * */
+/*
+*
+*
+* Так тут и не смог нормально настроить тулбар... Есть идеи?
+*
+*
+* */
 
     override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
 

@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import by.it.academy.app8_2task.R
+import by.it.academy.app8_2task.activity.CAR_WORK_LIST_FRAGMENT
+import by.it.academy.app8_2task.activity.EDIT_CAR_FRAGMENT
 import by.it.academy.app8_2task.customview.WorkStatusCustomView
 import by.it.academy.app8_2task.entity.WorkItem
 import by.it.academy.app8_2task.repositories.DatabaseWorksRepository
@@ -123,12 +125,7 @@ class EditWorkFragment : Fragment(R.layout.fragment_edit_work) {
     }
 
     private fun returnToCarWorkListFragment(bundle: Bundle) {
-        parentFragmentManager.commit {
-            addToBackStack(null)
-            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-            setReorderingAllowed(true)
-            replace(R.id.mainContainer, CarWorkListFragment::class.java, bundle)
-        }
+        (activity as OnChangeFragmentListener).onFragmentChange(CAR_WORK_LIST_FRAGMENT, bundle)
     }
 
     private fun getIntentDataAndSetInfoToEditTexts() {
