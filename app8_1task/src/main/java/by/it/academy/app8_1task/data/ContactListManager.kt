@@ -1,6 +1,6 @@
-package by.it.academy.app8_1task
+package by.it.academy.app8_1task.data
 
-    object ContactListManager {
+object ContactListManager {
         private val listOfContacts = mutableListOf<Contact>()
 
         fun addContactToList(contact: Contact) {

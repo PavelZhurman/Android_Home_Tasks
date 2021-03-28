@@ -1,18 +1,16 @@
-package by.it.academy.app8_1task
+package by.it.academy.app8_1task.fragment
 
-import android.media.Image
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.snackbar.Snackbar
+import by.it.academy.app8_1task.data.Contact
+import by.it.academy.app8_1task.data.ContactListManager
+import by.it.academy.app8_1task.R
 
 class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
 
@@ -47,10 +45,7 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
             }
 
             buttonBack.setOnClickListener {
-                parentFragmentManager.beginTransaction()
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                        .replace(R.id.mainContainerFragment, ListOfContactsFragment())
-                        .commit()
+
             }
 
         }

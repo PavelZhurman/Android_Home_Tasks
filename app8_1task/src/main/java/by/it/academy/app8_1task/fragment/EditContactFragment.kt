@@ -1,4 +1,4 @@
-package by.it.academy.app8_1task
+package by.it.academy.app8_1task.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -6,8 +6,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.snackbar.Snackbar
+import by.it.academy.app8_1task.LIST_OF_CONTACTS_FRAGMENT
+import by.it.academy.app8_1task.data.Contact
+import by.it.academy.app8_1task.data.ContactListManager
+import by.it.academy.app8_1task.R
 
 class EditContactFragment : Fragment(R.layout.fragment_edit_contact) {
 
@@ -16,8 +18,8 @@ class EditContactFragment : Fragment(R.layout.fragment_edit_contact) {
     private lateinit var buttonApply: ImageButton
     private lateinit var buttonDeletedContact: Button
     private lateinit var buttonBack: ImageButton
-    private lateinit var name:String
-    private lateinit var emailOrPhoneNumber:String
+    private lateinit var name: String
+    private lateinit var emailOrPhoneNumber: String
     private var image: Int = 0
     private var position = 0
 
@@ -57,17 +59,10 @@ class EditContactFragment : Fragment(R.layout.fragment_edit_contact) {
                 ContactListManager.deleteContactFromList(position)
                 showListOfContactsFragment()
             }
-
         }
-
     }
 
     private fun showListOfContactsFragment() {
-        parentFragmentManager.beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                .setReorderingAllowed(true)
-                .addToBackStack(null)
-                .replace(R.id.mainContainerFragment, ListOfContactsFragment())
-                .commit()
+        (activity as OnChangeFragmentListener).onChangeFragment(LIST_OF_CONTACTS_FRAGMENT, null)
     }
 }

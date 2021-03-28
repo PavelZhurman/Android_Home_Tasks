@@ -1,15 +1,19 @@
-package by.it.academy.app8_1task
+package by.it.academy.app8_1task.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import by.it.academy.app8_1task.ADD_CONTACT_FRAGMENT
+import by.it.academy.app8_1task.EDIT_CONTACT_FRAGMENT
+import by.it.academy.app8_1task.data.Contact
+import by.it.academy.app8_1task.adapter.ContactAdapter
+import by.it.academy.app8_1task.data.ContactListManager
+import by.it.academy.app8_1task.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -39,6 +43,7 @@ class ListOfContactsFragment : Fragment(R.layout.fragment_list_of_contacts), Con
             }
         }
 
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -49,17 +54,10 @@ class ListOfContactsFragment : Fragment(R.layout.fragment_list_of_contacts), Con
                 return false
             }
         })
-
     }
 
     private fun showAddContactFragment() {
-
-        parentFragmentManager.beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null)
-                .setReorderingAllowed(true)
-                .replace(R.id.mainContainerFragment, AddContactFragment())
-                .commit()
+        (activity as OnChangeFragmentListener).onChangeFragment(ADD_CONTACT_FRAGMENT, null)
     }
 
     override fun onResume() {
@@ -74,13 +72,8 @@ class ListOfContactsFragment : Fragment(R.layout.fragment_list_of_contacts), Con
             putString("emailOrPhoneNumber", item.emailOrPhoneNumber)
             putInt("image", item.image)
         }
+        (activity as OnChangeFragmentListener).onChangeFragment(EDIT_CONTACT_FRAGMENT, bundle)
 
-        parentFragmentManager.beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null)
-                .setReorderingAllowed(true)
-                .replace(R.id.mainContainerFragment, EditContactFragment::class.java, bundle)
-                .commit()
 
     }
 }

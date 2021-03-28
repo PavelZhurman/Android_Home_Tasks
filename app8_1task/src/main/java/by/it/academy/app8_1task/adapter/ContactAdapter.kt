@@ -1,4 +1,4 @@
-package by.it.academy.app8_1task
+package by.it.academy.app8_1task.adapter
 
 
 import android.view.LayoutInflater
@@ -9,6 +9,8 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import by.it.academy.app8_1task.R
+import by.it.academy.app8_1task.data.Contact
 import java.util.Locale
 import kotlin.collections.ArrayList
 
