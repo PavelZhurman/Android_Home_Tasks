@@ -10,6 +10,6 @@
     <string name="sum_of_all_numbers">Сумма всех чисел </string>
     <string name="numbers_average">Среднее арифметическое </string>
     <string name="magic_number">Число полученное после ряда операций </string>
-    <string name="amount_of_numbers">Количество номеров %1$d</string>
+    <string name="amount_of_numbers">Количество номеров </string>
 
 </resources>
