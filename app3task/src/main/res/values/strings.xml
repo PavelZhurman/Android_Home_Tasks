@@ -58,4 +58,19 @@
     <string name="favourite">favourite</string>
     <string name="avatar">avatar</string>
 
+    <string name="first_table_layout">First table layout</string>+
+    <string name="first_linear_layout">First linear layout</string>
+    <string name="second_linear">second linear</string>
+    <string name="second_constraint">second constraint</string>
+
+    <string name="second_relative">second relative</string>+
+    <string name="third_linear">third linear</string>
+    <string name="third_constraint">third constraint</string>
+    <string name="third_relative">third relative</string>
+
+    <string name="fourth_linear">fourth linear</string>+
+    <string name="fourth_constraint">fourth constraint</string>
+    <string name="fourth_relative">fourth relative</string>
+    <string name="fifth">Fifth</string>
+
 </resources>
