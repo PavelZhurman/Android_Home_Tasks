@@ -1,3 +1,5 @@
+include ':app8_2task'
+include ':app7_coroutines'
 include ':app5task'
 include ':app4_2task'
 include ':app4_1task'
