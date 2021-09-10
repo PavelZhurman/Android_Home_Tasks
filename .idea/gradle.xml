@@ -17,6 +17,8 @@
             <option value="$PROJECT_DIR$/app4_1task" />
             <option value="$PROJECT_DIR$/app4_2task" />
             <option value="$PROJECT_DIR$/app5task" />
+            <option value="$PROJECT_DIR$/app7_executor_service" />
+            <option value="$PROJECT_DIR$/app7task_rxjava" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

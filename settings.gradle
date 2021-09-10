@@ -1,3 +1,5 @@
+include ':app7task_rxjava'
+include ':app7_executor_service'
 include ':app5task'
 include ':app4_2task'
 include ':app4_1task'
