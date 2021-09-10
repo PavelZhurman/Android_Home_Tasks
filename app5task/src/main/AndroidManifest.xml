@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="by.it.academy.app5task">
 
     <uses-feature
@@ -18,7 +19,8 @@
         android:theme="@style/Theme.App1">
 
 
-        <activity android:name=".activity.MainActivity"
+        <activity
+            android:name=".activity.MainActivity"
             android:label="@string/car_list">
 
             <intent-filter>
@@ -42,6 +44,12 @@
         <activity
             android:name=".activity.EditWorkActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <provider
+            android:name=".content_provider.CarWorksContentProvider"
+            android:authorities="by.it.academy.app5task.app5task.content_provider.CarWorksContentProvider"
+            android:exported="true"
+            tools:ignore="ExportedContentProvider" />
     </application>
 
 </manifest>
